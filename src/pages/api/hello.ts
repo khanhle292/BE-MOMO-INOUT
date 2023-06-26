@@ -1,5 +1,12 @@
 import type { NextApiRequest, NextApiResponse } from "next";
+import VehicleType from "./../../controllers/vehicle.controller";
 
 export default function handler(req: NextApiRequest, res: NextApiResponse) {
-  res.status(200).json({ message: "Hello from the backend API!" });
+  if (req.method === "POST") {
+    // Process a POST request
+    return new VehicleType().index2(req, res);
+  } else {
+    // Handle any other HTTP method
+    return new VehicleType().index(req, res);
+  }
 }
